@@ -10,6 +10,7 @@ namespace _20146_20728_Projeto1
     {
         static void Main(string[] args)
         {
+            Console.WriteLine("Hello World");
         }
     }
 }
