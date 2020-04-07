@@ -59,7 +59,22 @@ namespace _20146_20728_Projeto1
 
         public static void ListaDeNumerosFibonnaci()
         {
+            Clear();
 
+            WriteXY(2, 2, "Série de Fibonacci");
+
+            WriteXY(5, 5, "Querido usuário, por favor, informe a quantidade de números desejados na sequência:");
+            int numeroInteiro = int.Parse(ReadLine());
+
+            var umMatematico = new Matematica(numeroInteiro);
+
+            Clear();
+
+            WriteXY(2, 2, "Lista de Fibonnaci");
+
+            WriteLine($"\n\n\n {umMatematico.Fibonacci()}");
+
+            EsperarEnter();
         }
 
         public static void RaizQuadradaNumeroReal()
