@@ -349,21 +349,22 @@ class Matematica
 
     public List<int> Fibonacci()
     {
-        var lista = new List<int>() {1, 1,};
+        var lista = new List<int>() {1, 1,};  // instância um objeto da classe List, que já se inicia com uma lista cujos os componenetes os dois primeiros números da série de Fibonnaci
 
-        int numeroAnterior = 1;
-        int numeroAnteriorAoAnterior = 1;
+        int numeroAnterior = 1; // essa variável guardará o número anterior da série pois ele precisará ser usado para calcular o próximo número da série
+        int numeroAnteriorAoAnterior = 1; // penúltimo número da série que também será usado para calcular o próximo número
 
-        int quantidadeDeNumeros = 2;
+        int quantidadeDeNumeros = 2; // indica a quantidades de número presente na sequência. Comaça velendo 2, pois já temos uma sequência inicial com 2 números
 
         for(int contador = 2; quantidadeDeNumeros <= numeroInteiro; contador++)
         {
-            if(contador == numeroAnterior + numeroAnteriorAoAnterior)
+            if(contador == numeroAnterior + numeroAnteriorAoAnterior) // o contador é igual a soma dos dois números anteriores da sequência?
+                                                                      // Se for verdadeiro, foi encontrado o prómixo número da série Fibonacci
             {
-                numeroAnteriorAoAnterior = numeroAnteriorAoAnterior;
-                numeroAnterior = contador;
+                numeroAnteriorAoAnterior = numeroAnterior; // Como foi encontrado o próximo número, então agora o penúltimo número da sequência passa a ser o que antes era o último número
+                numeroAnterior = contador; // e o último número da sequência passa a ser o novo número encontrado
 
-                lista.Add(contador);
+                lista.Add(contador); // adiciona a lista de números Fibonacci o novo número da série encontrado
 
                 quantidadeDeNumeros++;
             }
@@ -371,6 +372,8 @@ class Matematica
 
         return lista;
     }
+
+   
 
 
 }
