@@ -373,6 +373,47 @@ class Matematica
         return lista;
     }
 
+    public  int CalculoMMC(int outroValor)
+    {
+        int dividendo1 = numeroInteiro;
+        int dividendo2 = outroValor;
+
+        int quociente1 = 0;
+        int quociente2 = 0;
+
+        int resto1 = 0;
+        int resto2 = 0;
+
+        var oMMC = new Produtorio();
+
+        for (int contador = 2; dividendo1 != 1 || dividendo2 != 1; contador++)
+        {
+            numeroInteiro = contador;
+            if(EhPrimo())
+            {
+             
+                while (dividendo1 % contador == 0 || dividendo2 % contador == 0)
+                {
+                    quociente1 = dividendo2 / contador;
+                    quociente2 = dividendo1 / contador;
+
+                    resto1 = dividendo1 - contador * quociente1;
+                    resto2 = dividendo2 - contador * quociente2;
+
+
+                    oMMC.Multiplicar(contador);
+
+                    dividendo1 = resto1;
+                    dividendo2 = resto2;
+
+                    quociente1 = 0;
+                    quociente2 = 0;
+                }
+            }
+                
+        }
+    }
+
    
 
 

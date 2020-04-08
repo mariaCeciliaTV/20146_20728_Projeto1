@@ -44,7 +44,36 @@ namespace _20146_20728_Projeto1
 
         public static void MMCEntreDoisValores()
         {
+            Clear();
 
+            int dadoDigitado;
+            do
+            {
+                WriteXY(2, 2, "Cálculo do MMC de dois números inteiros");
+
+                WriteXY(5, 5, "Querido usuário, por favor, digite o primero número");
+                int primeiroNumero = int.Parse(ReadLine());
+
+                WriteXY(5, 5, "Querido usuário, por favor, digite o segundo número");
+                int segundoNumero = int.Parse(ReadLine());
+
+                var umMatematico = new Matematica(primeiroNumero);
+
+                Clear();
+
+                WriteXY(2, 2, "Cálculo do MMC entre dois números");
+
+                WriteXY(5, 5, $"O MMC de {primeiroNumero} e {segundoNumero} é: {umMatematico.CalculoMMC(segundoNumero)}");
+
+                WriteXY(2, 7, "Pressione [1] caso queira calcular novamente o MMC de dois números");
+                WriteXY(2, 8, "Pressione [2] caso queira finalizar o prgrama");
+                dadoDigitado = int.Parse(ReadLine());
+
+                EsperarEnter();
+
+            }
+            while (dadoDigitado != 2);
+           
         }
 
         public static void NumerosCentrais()
@@ -74,7 +103,7 @@ namespace _20146_20728_Projeto1
 
             WriteLine($"\n\n\n {umMatematico.Fibonacci()}");
 
-            EsperarEnter();
+            EsperarEnter(); 
         }
 
         public static void RaizQuadradaNumeroReal()
