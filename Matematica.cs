@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using static System.Math;
+using System.IO;
+
 
 
 class Matematica
@@ -349,14 +351,12 @@ class Matematica
 
     public List<int> Fibonacci()
     {
-        var lista = new List<int>() {1, 1,};  // instância um objeto da classe List, que já se inicia com uma lista cujos os componenetes os dois primeiros números da série de Fibonnaci
+        var lista = new List<int>(numeroInteiro) {1, 1};  // instância um objeto da classe List, que já se inicia com uma lista cujos os componenetes os dois primeiros números da série de Fibonnaci
 
         int numeroAnterior = 1; // essa variável guardará o número anterior da série pois ele precisará ser usado para calcular o próximo número da série
         int numeroAnteriorAoAnterior = 1; // penúltimo número da série que também será usado para calcular o próximo número
 
-        int quantidadeDeNumeros = 2; // indica a quantidades de número presente na sequência. Comaça velendo 2, pois já temos uma sequência inicial com 2 números
-
-        for(int contador = 2; quantidadeDeNumeros <= numeroInteiro; contador++)
+        for(int contador = 2; lista.Count() <= numeroInteiro; contador++)
         {
             if(contador == numeroAnterior + numeroAnteriorAoAnterior) // o contador é igual a soma dos dois números anteriores da sequência?
                                                                       // Se for verdadeiro, foi encontrado o prómixo número da série Fibonacci
@@ -365,24 +365,19 @@ class Matematica
                 numeroAnterior = contador; // e o último número da sequência passa a ser o novo número encontrado
 
                 lista.Add(contador); // adiciona a lista de números Fibonacci o novo número da série encontrado
-
-                quantidadeDeNumeros++;
             }
         }
 
         return lista;
     }
 
-    public  int CalculoMMC(int outroValor)
+    public  double CalculoMMC(int outroValor)
     {
         int dividendo1 = numeroInteiro;
         int dividendo2 = outroValor;
 
         int quociente1 = 0;
         int quociente2 = 0;
-
-        int resto1 = 0;
-        int resto2 = 0;
 
         var oMMC = new Produtorio();
 
@@ -394,26 +389,48 @@ class Matematica
              
                 while (dividendo1 % contador == 0 || dividendo2 % contador == 0)
                 {
-                    quociente1 = dividendo2 / contador;
-                    quociente2 = dividendo1 / contador;
-
-                    resto1 = dividendo1 - contador * quociente1;
-                    resto2 = dividendo2 - contador * quociente2;
-
-
                     oMMC.Multiplicar(contador);
 
-                    dividendo1 = resto1;
-                    dividendo2 = resto2;
+                    if (dividendo1 % contador == 0)
+                    {
+                        quociente1 = dividendo1 / contador;
+                        dividendo1 = quociente1;
+                        quociente1 = 0;
+                    }
 
-                    quociente1 = 0;
-                    quociente2 = 0;
+                    if (dividendo1 % contador == 0)
+                    {
+                        quociente2 = dividendo2 / contador;
+                        dividendo2 = quociente2;
+                        quociente2 = 0;
+                    }
                 }
             }
                 
         }
+
+        return oMMC.Valor;
     }
 
+
+    public void LerDados(string nomeArquivo)
+    {
+        var leitorDeDados = new StreamReader(nomeArquivo);
+
+        string linha, classe, registroAcademico;
+        double nota;
+
+        while(!leitorDeDados.EndOfStream)
+        {
+            linha = leitorDeDados.ReadLine();
+
+            classe = linha.Substring(0, 6);
+            registroAcademico = linha.Substring(6, 5);
+            nota = int.Parse(linha.Substring(11, 4));
+        }
+
+    }
+       
    
 
 
